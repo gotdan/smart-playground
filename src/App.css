@@ -1,0 +1,7 @@
+/* apply borders to codemirror instance */
+.cm-editor { 
+	border: 1px solid rgb(222, 226, 230);
+}
+
+#cm-readonly .cm-gutters { margin: 1px; }
+#cm-readonly .cm-scroller { overflow: auto; }
