@@ -88,6 +88,7 @@
 			"resourceType": "Observation",
 			"contained": [
 				{
+					"id": "device",
 					"resourceType": "Device",
 					"deviceName": [
 						{

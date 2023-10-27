@@ -17,7 +17,7 @@ function SmartConnection({onSubmit, endpoint='', client_id='', scope='', snippet
 	}
 
 	function handleSnippetSelect(value) {
-		setFormData({...formData, ...value})
+		setFormData({...formData, note: undefined, ...value})
 	}
 
 	function handleSubmit(e) {
@@ -30,7 +30,7 @@ function SmartConnection({onSubmit, endpoint='', client_id='', scope='', snippet
 	}
 
 	return <>
-		<h1 className="mb-4">Server Settings</h1>
+		<h2 className="mb-4">Server Settings</h2>
 
 			<div align="end"><SnippetMenu
 				title="connections"
@@ -56,8 +56,12 @@ function SmartConnection({onSubmit, endpoint='', client_id='', scope='', snippet
 		</Form.Group>
 
 		<p className="mb-3">
-			Redirect URL: {(window.location.href.split("?")[0]||"").replace("index.html", "")}
+			Redirect URL: {(window.location.href.split("?")[0]||"").replace("index.html", "").replace(/\/$/, "")}
 		</p>
+
+		{formData.note && <p className="mb-3 fst-italic">
+			{formData.note}
+		</p>}
 
 		<Button variant="primary" type="submit">
 			Connect

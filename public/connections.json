@@ -4,5 +4,12 @@
 		"endpoint": "https://launch.smarthealthit.org/v/r4/sim/WzMsIiIsIiIsIkFVVE8iLDAsMCwwLCIiLCIiLCIiLCIiLCIiLCIiLCIiLDAsMV0/fhir",
 		"scope": "launch/patient patient/Observation.read",
 		"client_id": "client_1"
+	},
+	{
+		"name": "Epic Sandbox (Patient)",
+		"endpoint": "https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/",
+		"note": "Test patient login details at: https://fhir.epic.com/Documentation?docId=testpatients",
+		"scope": "launch/patient patient/Observation.read patient/Observation.search patient/Observation.create patient/Patient.read patient/Patient.search",
+		"client_id": "5f2bb319-9dc1-4902-ab8d-1d8f6e1f28f0"
 	}
 ]

@@ -94,9 +94,9 @@ function  FhirClient({smartClient, method="GET", body='', url='', snippetUrl, da
 		if (pendingRequest) return renderWorking();
 
 		return <>
-			<h1 className="mb-4">FHIR Request</h1>
+			<h2 className="mb-4">FHIR Request</h2>
 
-			<div align="end"><SnippetMenu
+			<div align="end" className="mb-3"><SnippetMenu
 				title="snippets"
 				url={snippetUrl}
 				onChange={handleSnippetSelect}

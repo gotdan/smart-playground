@@ -20,6 +20,7 @@ A minimal, standalone [SMART-on-FHIR](https://www.hl7.org/fhir/smart-app-launch/
 	```
 4. Open  http://localhost:5173/
 
+You can open the app's url in multiple windows or tabs to connect to different FHIR servers. Closing a tab or window closes the connection.
 
 ## Connection parameters
 

@@ -7,8 +7,8 @@ import './App.css'
 import SmartConnection from './SmartConnection.jsx'
 import FhirClient from './FhirClient';
 
-import {Container, Row, Col, Alert} from 'react-bootstrap';
-import { oauth2 as SMART, FHIR} from "fhirclient";
+import {Container, Row, Col, Alert, Navbar} from 'react-bootstrap';
+import { oauth2 as SMART} from "fhirclient";
 
 function App() {
 	const [smartClient, setSmartClient] = useState()
@@ -36,40 +36,48 @@ function App() {
 		SMART.authorize({
 			client_id: data.client_id,
 			scope: data.scope,
-			iss: data.endpoint
+			iss: data.endpoint,
+			redirectUri: (window.location.href.split("?")[0]||"").replace("index.html", "").replace(/\/$/, "")
 		});
 	}
 
-	return <Container><Row><Col>
+	return <>
+	
+		<Navbar bg="secondary" data-bs-theme="dark">
+			<Container>
+				<Navbar.Brand>Argonaut SMART-on-FHIR Playground</Navbar.Brand>
+			</Container>
+		</Navbar>
 
-		{errorMessage && 
-			<Alert variant="danger">
-				An error occurred:<br/>{errorMessage}
-			</Alert>
-		}
+		<div className="m-4"><Container><Row><Col>
+			{errorMessage && 
+				<Alert variant="danger">
+					An error occurred:<br/>{errorMessage}
+				</Alert>
+			}
 
-		{!smartClient &&
-			<SmartConnection
-				endpoint={urlParams.endpoint||''}
-				client_id={urlParams.client_id||''}
-				scope={urlParams.scope||''}		
-				snippetUrl={urlParams.connections || "connections.json"}
-				onSubmit={handleAuthSubmit} 
-			/>
-		}
+			{!smartClient &&
+				<SmartConnection
+					endpoint={urlParams.endpoint||''}
+					client_id={urlParams.client_id||''}
+					scope={urlParams.scope||''}		
+					snippetUrl={urlParams.connections || "connections.json"}
+					onSubmit={handleAuthSubmit} 
+				/>
+			}
 
-		{smartClient && 
-			<FhirClient 
-				smartClient={smartClient}
-				dataUrl={sessionStorage.getItem("dataurl")}
-				method={(sessionStorage.getItem("method")||"GET").toUpperCase()}
-				body={(sessionStorage.getItem("body")||"")}
-				url={(sessionStorage.getItem("url")||"")}
-				snippetUrl={sessionStorage.getItem("snippets") || "request-snippets.json"}
-			/> 
-		}
-
-	</Col></Row></Container>
+			{smartClient && 
+				<FhirClient 
+					smartClient={smartClient}
+					dataUrl={sessionStorage.getItem("dataurl")}
+					method={(sessionStorage.getItem("method")||"GET").toUpperCase()}
+					body={(sessionStorage.getItem("body")||"")}
+					url={(sessionStorage.getItem("url")||"")}
+					snippetUrl={sessionStorage.getItem("snippets") || "request-snippets.json"}
+				/> 
+			}
+		</Col></Row></Container></div>
+	</>
 }
 
 export default App
