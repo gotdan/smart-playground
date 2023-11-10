@@ -8,7 +8,7 @@ import SmartConnection from './SmartConnection.jsx'
 import FhirClient from './FhirClient';
 
 import {Container, Row, Col, Alert, Navbar} from 'react-bootstrap';
-import { oauth2 as SMART} from "fhirclient";
+import FHIR, { oauth2 as SMART} from "fhirclient";
 
 function App() {
 	const [smartClient, setSmartClient] = useState()
@@ -33,6 +33,12 @@ function App() {
 
 	function handleAuthSubmit(data) {
 		setErrorMessage(null);
+		if (data.isOpen) {
+			const client = FHIR.client(data.endpoint);
+			client.patientId = data.patientId;
+			setSmartClient(client);
+			return;
+		}
 		SMART.authorize({
 			client_id: data.client_id,
 			scope: data.scope,
@@ -61,6 +67,8 @@ function App() {
 					endpoint={urlParams.endpoint||''}
 					client_id={urlParams.client_id||''}
 					scope={urlParams.scope||''}		
+					isOpen={(urlParams.isOpen||'').toLowerCase() == 'true' ? true : false}		
+					patientId={urlParams.patientId||''}		
 					snippetUrl={urlParams.connections || "connections.json"}
 					onSubmit={handleAuthSubmit} 
 				/>

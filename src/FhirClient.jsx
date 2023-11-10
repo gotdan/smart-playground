@@ -60,10 +60,10 @@ function  FhirClient({smartClient, method="GET", body='', url='', snippetUrl, da
 	function handleFhirRequest(e, navUrl) {
 		e.preventDefault();
 		const body = !navUrl && fhirRequest.body && fhirRequest.method != "GET" && fhirRequest.body != "DELETE"
-			? fhirRequest.body.replaceAll("{{patientId}}", smartClient.patient.id)
+			? fhirRequest.body.replaceAll("{{patientId}}", smartClient.patient.id || smartClient.patientId)
 			: null;
 		const url = (navUrl || fhirRequest.url || '')
-			.replaceAll("{{patientId}}", smartClient.patient.id);
+			.replaceAll("{{patientId}}", smartClient.patient.id || smartClient.patientId);
 		setPendingRequest(true);
 		smartClient.request({
 			method: navUrl ? "GET" : fhirRequest.method, 

@@ -29,7 +29,9 @@ Connection parameters can be passed in the URL querystring to pre-populate the S
 | name | description |
 | -- | -- |
 | endpoint | server FHIR endpoint |
-| client_id | the client_id for this app on the FHIR endpoint's auth server|
+| isOpen | set to `true` to skip SMART authorization for open servers |
+| patientId | patient id to inject into `{{patientId}}` template variable (open servers only) |
+| client_id | the client_id for this app on the FHIR endpoint's auth server |
 | scope | a comma or space delimited set of scopes being requested |
 
 ## Request parameters
