@@ -70,7 +70,7 @@ function  FhirClient({smartClient, method="GET", body='', url='', snippetUrl, da
 			url, 
 			body, 
 			includeResponse: true,
-			headers: {"content-type" : "application/json+fhir"}
+			headers: {"content-type" : "application/fhir+json"}
 		}).then( response => {
 			setFhirResponse({
 				code: response.response.status,
