@@ -14,8 +14,14 @@
 	{
 		"name": "Epic Sandbox (Patient)",
 		"endpoint": "https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/",
-		"note": "Test patient login details at: https://fhir.epic.com/Documentation?docId=testpatients",
+		"note": "Username: jeanluc.picard, Password: epic",
 		"scope": "launch/patient patient/Observation.read patient/Observation.search patient/Observation.create patient/Patient.read patient/Patient.search",
 		"client_id": "5f2bb319-9dc1-4902-ab8d-1d8f6e1f28f0"
+	},
+	{
+		"name": "FHIR Candle",
+		"endpoint": "https://vitals-server.ri.argo.run/fhir/smart",
+		"scope": "launch/patient patient/Patient.read patient/Observation.read patient/Observation.write",
+		"client_id": "client_1"
 	}
 ]
