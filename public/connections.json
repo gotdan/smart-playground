@@ -23,5 +23,11 @@
 		"endpoint": "https://vitals-server.ri.argo.run/fhir/smart",
 		"scope": "launch/patient patient/Patient.read patient/Observation.read patient/Observation.write",
 		"client_id": "client_1"
+	},
+	{
+		"name": "Meditech",
+		"endpoint": "https://dev-mtx-interop.meditech.com:443/v2/uscore/R4",
+		"client_id": "writeVitalDemoPublic",
+		"scope": "launch/patient patient/Patient.read patient/Observation.*"
 	}
 ]
